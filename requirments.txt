@@ -1,3 +1,4 @@
-Pillow
-numpy
-scipy
+Pillow == 12.3.0
+numpy == 2.5.2
+scipy == 1.18.0
+python-constraint2 == 2.7.3
