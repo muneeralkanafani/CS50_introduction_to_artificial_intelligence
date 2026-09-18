@@ -1,5 +1,6 @@
 numpy == 2.5.2
 Pillow == 12.3.0
+pygame == 2.6.1
 python-constraint2 == 2.7.3
 scikit-learn == 1.9.0
 scipy == 1.18.1
