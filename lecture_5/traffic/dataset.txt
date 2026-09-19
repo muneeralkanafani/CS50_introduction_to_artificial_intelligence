@@ -1,0 +1,85 @@
+## DataSet
+
+we use German Traffic Sign Recognition Benchmark (GTSRB) dataset, 
+which contains thousands of images of 43 different kinds of road signs.
+
+you should download it from this URL:
+https://cdn.cs50.net/ai/2023/x/projects/5/gtsrb.zip
+then put it in this folder (traffic)
+
+## First Attempt
+
+Architecture:
+ - Convolutional layer. Learn 32 filters using a 3x3 kernel
+ - Max-pooling layer, using 2x2 pool size
+ - Flatten units
+ - a hidden layer with 128 units and with dropout
+ - an output layer with output units for all NUM_CATEGORIES
+
+but the accuracy is too low in this structure of layers and these are the results:
+
+Epoch 1/10
+500/500 ━━━━━━━━━━━━━━━━━━━━ 4s 6ms/step - accuracy: 0.0534 - loss: 5.0009      
+Epoch 2/10
+500/500 ━━━━━━━━━━━━━━━━━━━━ 3s 6ms/step - accuracy: 0.0564 - loss: 3.5917 
+Epoch 3/10
+500/500 ━━━━━━━━━━━━━━━━━━━━ 3s 6ms/step - accuracy: 0.0564 - loss: 3.5433     
+Epoch 4/10
+500/500 ━━━━━━━━━━━━━━━━━━━━ 3s 6ms/step - accuracy: 0.0564 - loss: 3.5210 
+Epoch 5/10
+500/500 ━━━━━━━━━━━━━━━━━━━━ 3s 6ms/step - accuracy: 0.0564 - loss: 3.5104      
+Epoch 6/10
+500/500 ━━━━━━━━━━━━━━━━━━━━ 3s 6ms/step - accuracy: 0.0564 - loss: 3.5056      
+Epoch 7/10
+500/500 ━━━━━━━━━━━━━━━━━━━━ 3s 6ms/step - accuracy: 0.0564 - loss: 3.5032      
+Epoch 8/10
+500/500 ━━━━━━━━━━━━━━━━━━━━ 3s 6ms/step - accuracy: 0.0557 - loss: 3.5020  
+Epoch 9/10
+500/500 ━━━━━━━━━━━━━━━━━━━━ 3s 6ms/step - accuracy: 0.0564 - loss: 3.5014  
+Epoch 10/10
+500/500 ━━━━━━━━━━━━━━━━━━━━ 3s 6ms/step - accuracy: 0.0564 - loss: 3.5011 
+333/333 - 1s - 2ms/step - accuracy: 0.0561 - loss: 3.4937
+
+## Second Attempt
+
+Architecture:
+First Convolutional Block:
+ - Convolutional layer. Learn 32 filters using a 3x3 kernel
+ - Convolutional layer. Learn 32 filters using a 3x3 kernel
+ - Max-pooling layer, using 2x2 pool size
+ - Dropout Layer with (0.25)
+
+Second Convolutional Block:
+ - Convolutional layer. Learn 32 filters using a 3x3 kernel
+ - Convolutional layer. Learn 32 filters using a 3x3 kernel
+ - Max-pooling layer, using 2x2 pool size
+ - Dropout Layer with (0.25)
+
+Classifier:
+ - Flatten units
+ - a hidden layer with 128 units and with dropout
+ - an output layer with output units for all NUM_CATEGORIES
+
+now this structure of layers made the accuracy much more and these are the results:
+
+Epoch 1/10
+500/500 ━━━━━━━━━━━━━━━━━━━━ 7s 12ms/step - accuracy: 0.3788 - loss: 2.5133        
+Epoch 2/10
+500/500 ━━━━━━━━━━━━━━━━━━━━ 6s 13ms/step - accuracy: 0.7531 - loss: 0.8340 
+Epoch 3/10
+500/500 ━━━━━━━━━━━━━━━━━━━━ 7s 13ms/step - accuracy: 0.8649 - loss: 0.4617 
+Epoch 4/10
+500/500 ━━━━━━━━━━━━━━━━━━━━ 7s 13ms/step - accuracy: 0.9098 - loss: 0.3101 
+Epoch 5/10
+500/500 ━━━━━━━━━━━━━━━━━━━━ 7s 13ms/step - accuracy: 0.9251 - loss: 0.2601 
+Epoch 6/10
+500/500 ━━━━━━━━━━━━━━━━━━━━ 7s 13ms/step - accuracy: 0.9409 - loss: 0.2162 
+Epoch 7/10
+500/500 ━━━━━━━━━━━━━━━━━━━━ 7s 13ms/step - accuracy: 0.9493 - loss: 0.1807 
+Epoch 8/10
+500/500 ━━━━━━━━━━━━━━━━━━━━ 7s 14ms/step - accuracy: 0.9443 - loss: 0.1906 
+Epoch 9/10
+500/500 ━━━━━━━━━━━━━━━━━━━━ 7s 14ms/step - accuracy: 0.9516 - loss: 0.1718 
+Epoch 10/10
+500/500 ━━━━━━━━━━━━━━━━━━━━ 7s 14ms/step - accuracy: 0.9504 - loss: 0.1758 
+333/333 - 2s - 5ms/step - accuracy: 0.9870 - loss: 0.0504
